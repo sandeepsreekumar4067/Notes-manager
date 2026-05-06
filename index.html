@@ -15,391 +15,173 @@
       --surface2: #1e2029;
       --border: rgba(255,255,255,0.07);
       --accent: #c8a96e;
-      --accent2: #e8c98e;
       --text: #e8e6e0;
       --muted: #7a7870;
       --pill-bg: rgba(200, 169, 110, 0.12);
     }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden;
     }
 
-    /* Decorative background */
     body::before {
-      content: '';
-      position: fixed;
-      top: -30%;
-      right: -20%;
-      width: 600px;
-      height: 600px;
+      content: ''; position: fixed; top: -30%; right: -20%;
+      width: 600px; height: 600px;
       background: radial-gradient(ellipse, rgba(200,169,110,0.06) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
 
     #app { position: relative; z-index: 1; }
 
     /* Header */
     header {
-      padding: 2.5rem 3rem 2rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 1rem;
+      padding: 2.5rem 3rem 2rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem;
     }
-
     .logo-area h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      line-height: 1;
+      font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700;
+      letter-spacing: -0.02em; color: var(--text); line-height: 1;
     }
-
     .logo-area h1 span { color: var(--accent); }
+    .logo-area p { margin-top: 0.4rem; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 
-    .logo-area p {
-      margin-top: 0.4rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .search-wrap {
-      position: relative;
-      flex-shrink: 0;
-    }
-
+    .search-wrap { position: relative; flex-shrink: 0; }
     .search-wrap input {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.6rem 1rem 0.6rem 2.4rem;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      width: 220px;
-      outline: none;
-      transition: border-color 0.2s;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 0.6rem 1rem 0.6rem 2.4rem; color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-size: 0.85rem; width: 220px;
+      outline: none; transition: border-color 0.2s;
     }
-
     .search-wrap input::placeholder { color: var(--muted); }
     .search-wrap input:focus { border-color: rgba(200,169,110,0.4); }
+    .search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
 
-    .search-icon {
-      position: absolute;
-      left: 0.75rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      font-size: 0.9rem;
-      pointer-events: none;
-    }
-
-    /* Main layout */
-    main {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      min-height: calc(100vh - 100px);
-    }
+    /* Layout */
+    main { display: grid; grid-template-columns: 260px 1fr; min-height: calc(100vh - 105px); }
 
     /* Sidebar */
     aside {
-      border-right: 1px solid var(--border);
-      padding: 1.5rem 0;
-      position: sticky;
-      top: 0;
-      height: calc(100vh - 100px);
-      overflow-y: auto;
+      border-right: 1px solid var(--border); padding: 1.5rem 0;
+      position: sticky; top: 0; height: calc(100vh - 105px); overflow-y: auto;
     }
-
     aside::-webkit-scrollbar { width: 4px; }
-    aside::-webkit-scrollbar-track { background: transparent; }
     aside::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-    .sidebar-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 0 1.5rem;
-      margin-bottom: 0.75rem;
-    }
+    .sidebar-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 0 1.5rem; margin-bottom: 0.75rem; }
 
     .subject-btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding: 0.65rem 1.5rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--muted);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 400;
-      text-align: left;
-      transition: all 0.15s;
-      border-left: 2px solid transparent;
-      gap: 0.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; padding: 0.65rem 1.5rem; background: none; border: none;
+      cursor: pointer; color: var(--muted); font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 400; text-align: left;
+      transition: all 0.15s; border-left: 2px solid transparent; gap: 0.5rem;
     }
-
     .subject-btn:hover { color: var(--text); background: var(--surface); }
-
-    .subject-btn.active {
-      color: var(--accent);
-      border-left-color: var(--accent);
-      background: var(--pill-bg);
-      font-weight: 500;
-    }
+    .subject-btn.active { color: var(--accent); border-left-color: var(--accent); background: var(--pill-bg); font-weight: 500; }
 
     .subject-count {
-      font-size: 0.72rem;
-      background: var(--surface2);
-      color: var(--muted);
-      padding: 0.15rem 0.5rem;
-      border-radius: 20px;
-      flex-shrink: 0;
+      font-size: 0.72rem; background: var(--surface2); color: var(--muted);
+      padding: 0.15rem 0.5rem; border-radius: 20px; flex-shrink: 0;
     }
+    .subject-btn.active .subject-count { background: rgba(200,169,110,0.2); color: var(--accent); }
 
-    .subject-btn.active .subject-count {
-      background: rgba(200,169,110,0.2);
-      color: var(--accent);
-    }
+    /* Content */
+    .content { padding: 2.5rem 3rem; }
 
-    /* Content area */
-    .content {
-      padding: 2.5rem 3rem;
-    }
-
-    /* Breadcrumb */
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 2rem;
-    }
-
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; }
     .breadcrumb span { cursor: pointer; transition: color 0.15s; }
     .breadcrumb span:hover { color: var(--accent); }
     .breadcrumb .sep { color: var(--border); }
     .breadcrumb .current { color: var(--text); cursor: default; }
 
-    /* Subject header */
-    .subject-header {
-      margin-bottom: 2.5rem;
-    }
+    .subject-header { margin-bottom: 2.5rem; }
+    .subject-header h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; line-height: 1.1; margin-bottom: 0.4rem; }
+    .subject-header .meta { font-size: 0.82rem; color: var(--muted); }
 
-    .subject-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 0.4rem;
-    }
-
-    .subject-header .meta {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
-    /* Professor section */
     .professor-section { margin-bottom: 3rem; }
-
-    .professor-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border);
-    }
+    .professor-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
 
     .prof-avatar {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
+      width: 38px; height: 38px; border-radius: 50%;
       background: linear-gradient(135deg, var(--accent) 0%, var(--surface2) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.85rem;
-      color: var(--bg);
-      flex-shrink: 0;
-      letter-spacing: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem; color: var(--bg); flex-shrink: 0;
     }
+    .prof-info h3 { font-size: 1rem; font-weight: 500; color: var(--text); }
+    .prof-info span { font-size: 0.75rem; color: var(--muted); }
 
-    .prof-info h3 {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .prof-info span {
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-
-    /* Notes grid */
-    .notes-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-      gap: 1rem;
-    }
+    .notes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
 
     .note-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.2rem; display: flex; flex-direction: column; gap: 0.75rem;
       transition: border-color 0.2s, transform 0.2s, background 0.2s;
-      cursor: default;
     }
-
-    .note-card:hover {
-      border-color: rgba(200,169,110,0.3);
-      background: var(--surface2);
-      transform: translateY(-2px);
-    }
+    .note-card:hover { border-color: rgba(200,169,110,0.3); background: var(--surface2); transform: translateY(-2px); }
 
     .note-icon {
-      width: 36px;
-      height: 44px;
-      background: rgba(200,169,110,0.1);
-      border: 1px solid rgba(200,169,110,0.2);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      position: relative;
+      width: 36px; height: 44px; background: rgba(200,169,110,0.1);
+      border: 1px solid rgba(200,169,110,0.2); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center; font-size: 1rem; position: relative;
     }
-
     .note-icon::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 10px; height: 10px;
-      background: var(--surface2);
-      border-left: 1px solid rgba(200,169,110,0.2);
-      border-bottom: 1px solid rgba(200,169,110,0.2);
-      border-radius: 0 4px 0 4px;
+      content: ''; position: absolute; top: 0; right: 0; width: 10px; height: 10px;
+      background: var(--surface2); border-left: 1px solid rgba(200,169,110,0.2);
+      border-bottom: 1px solid rgba(200,169,110,0.2); border-radius: 0 4px 0 4px;
     }
 
-    .note-title {
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.4;
-      flex: 1;
-    }
-
-    .note-meta {
-      font-size: 0.72rem;
-      color: var(--muted);
-    }
-
-    .note-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    .note-title { font-size: 0.88rem; font-weight: 500; color: var(--text); line-height: 1.4; flex: 1; }
+    .note-footer { display: flex; align-items: center; justify-content: space-between; }
+    .note-meta { font-size: 0.72rem; color: var(--muted); }
 
     .download-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--pill-bg);
-      border: 1px solid rgba(200,169,110,0.25);
-      color: var(--accent);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.76rem;
-      font-weight: 500;
-      padding: 0.4rem 0.85rem;
-      border-radius: 6px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--pill-bg); border: 1px solid rgba(200,169,110,0.25);
+      color: var(--accent); font-family: 'DM Sans', sans-serif;
+      font-size: 0.76rem; font-weight: 500; padding: 0.4rem 0.85rem;
+      border-radius: 6px; text-decoration: none; transition: background 0.2s, border-color 0.2s;
     }
+    .download-btn:hover { background: rgba(200,169,110,0.22); border-color: rgba(200,169,110,0.5); }
 
-    .download-btn:hover {
-      background: rgba(200,169,110,0.22);
-      border-color: rgba(200,169,110,0.5);
+    /* Loading */
+    .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 5rem 2rem; gap: 1.2rem; color: var(--muted); }
+    .spinner { width: 36px; height: 36px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading p { font-size: 0.85rem; }
+
+    /* Error */
+    .error-box {
+      background: rgba(220,60,60,0.08); border: 1px solid rgba(220,60,60,0.2);
+      border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2rem;
+      font-size: 0.85rem; color: #e07070; line-height: 1.6;
     }
+    .error-box strong { display: block; margin-bottom: 0.4rem; font-size: 0.95rem; color: #f08080; }
+    .error-box code { font-size: 0.8rem; background: rgba(255,255,255,0.05); padding: 0.1rem 0.4rem; border-radius: 4px; }
 
-    /* Empty state */
-    .empty {
-      text-align: center;
-      padding: 5rem 2rem;
-      color: var(--muted);
-    }
+    /* Landing / empty */
+    .landing { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5rem 2rem; gap: 1rem; }
+    .landing-icon { font-size: 3rem; opacity: 0.4; }
+    .landing h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--text); }
+    .landing p { font-size: 0.88rem; color: var(--muted); max-width: 360px; line-height: 1.7; }
+    .landing code { font-size: 0.8rem; background: var(--surface2); padding: 0.15rem 0.5rem; border-radius: 4px; color: var(--accent); }
 
+    .empty { text-align: center; padding: 4rem 2rem; color: var(--muted); }
     .empty .emoji { font-size: 2.5rem; margin-bottom: 1rem; }
     .empty h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 0.5rem; }
     .empty p { font-size: 0.85rem; }
+    .empty code { font-size: 0.78rem; background: var(--surface2); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--accent); }
 
-    /* Landing state */
-    .landing {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 5rem 2rem;
-      gap: 1rem;
-    }
-
-    .landing-icon { font-size: 3rem; opacity: 0.4; }
-
-    .landing h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      color: var(--text);
-    }
-
-    .landing p { font-size: 0.88rem; color: var(--muted); max-width: 340px; }
-
-    /* Tags/chips row */
-    .tag {
-      display: inline-block;
-      font-size: 0.7rem;
-      padding: 0.15rem 0.5rem;
-      border-radius: 4px;
-      background: var(--surface2);
-      color: var(--muted);
-      border: 1px solid var(--border);
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
       header { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
       .search-wrap input { width: 100%; }
       main { grid-template-columns: 1fr; }
-      aside { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); padding: 1rem 0; display: flex; overflow-x: auto; gap: 0; }
+      aside { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); padding: 1rem 0; display: flex; overflow-x: auto; }
       .sidebar-label { display: none; }
-      .subject-btn { white-space: nowrap; border-left: none; border-bottom: 2px solid transparent; padding: 0.5rem 1rem; }
+      .subject-btn { white-space: nowrap; border-left: none; border-bottom: 2px solid transparent; }
       .subject-btn.active { border-left-color: transparent; border-bottom-color: var(--accent); }
       .content { padding: 1.5rem; }
     }
-
-    /* Fade transition */
-    .fade-enter-active, .fade-leave-active { transition: opacity 0.2s; }
-    .fade-enter-from, .fade-leave-to { opacity: 0; }
   </style>
 </head>
 <body>
@@ -407,35 +189,48 @@
   <header>
     <div class="logo-area">
       <h1>Class<span>Notes</span></h1>
-      <p>{{ semester }} · {{ department }}</p>
+      <p>{{ SEMESTER }} · {{ DEPARTMENT }}</p>
     </div>
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
-      <input type="text" v-model="search" placeholder="Search notes…" />
+      <input type="text" v-model="search" placeholder="Search notes…" :disabled="loading" />
     </div>
   </header>
 
   <main>
-    <!-- Sidebar: subjects -->
     <aside>
       <div class="sidebar-label">Subjects</div>
+      <div v-if="loading" style="padding:1rem 1.5rem; font-size:0.82rem; color:var(--muted);">Loading…</div>
       <button
-        v-for="subject in notesData"
-        :key="subject.name"
-        class="subject-btn"
-        :class="{ active: activeSubject === subject.name }"
+        v-for="subject in notesData" :key="subject.name"
+        class="subject-btn" :class="{ active: activeSubject === subject.name }"
         @click="selectSubject(subject.name)"
       >
         <span>{{ subject.name }}</span>
-        <span class="subject-count">{{ totalNotes(subject) }}</span>
+        <span class="subject-count">{{ cachedNoteCount(subject.name) }}</span>
       </button>
     </aside>
 
-    <!-- Content -->
     <div class="content">
 
+      <!-- Global loading -->
+      <div v-if="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Fetching subjects from GitHub…</p>
+      </div>
+
+      <!-- Error -->
+      <div v-else-if="error" class="error-box">
+        <strong>⚠ Could not load notes</strong>
+        {{ error }}<br/><br/>
+        Make sure:<br/>
+        • <code>GITHUB_USER</code> and <code>GITHUB_REPO</code> are set correctly<br/>
+        • The repository is <strong>public</strong><br/>
+        • The folder <code>{{ NOTES_ROOT }}/</code> exists on the <code>{{ GITHUB_BRANCH }}</code> branch
+      </div>
+
       <!-- Search results -->
-      <template v-if="search.trim()">
+      <template v-else-if="search.trim()">
         <div class="breadcrumb">
           <span @click="search = ''">Home</span>
           <span class="sep">›</span>
@@ -443,48 +238,47 @@
         </div>
         <div class="subject-header">
           <h2>Search Results</h2>
-          <div class="meta">{{ searchResults.length }} note(s) found</div>
+          <div class="meta">{{ searchResults.length }} group(s) found</div>
         </div>
         <div v-if="searchResults.length === 0" class="empty">
           <div class="emoji">🔍</div>
           <h3>No notes found</h3>
-          <p>Try a different keyword</p>
+          <p>Only subjects you've already browsed are searchable. Open more subjects first.</p>
         </div>
-        <div v-for="group in searchResults" :key="group.subject + group.professor">
-          <div class="professor-section">
-            <div class="professor-header">
-              <div class="prof-avatar">{{ initials(group.professor) }}</div>
-              <div class="prof-info">
-                <h3>{{ group.professor }}</h3>
-                <span>{{ group.subject }}</span>
-              </div>
+        <div v-for="group in searchResults" :key="group.subject + group.professor" class="professor-section">
+          <div class="professor-header">
+            <div class="prof-avatar">{{ initials(group.professor) }}</div>
+            <div class="prof-info">
+              <h3>{{ group.professor }}</h3>
+              <span>{{ group.subject }}</span>
             </div>
-            <div class="notes-grid">
-              <div class="note-card" v-for="note in group.notes" :key="note.title">
-                <div class="note-icon">📄</div>
-                <div class="note-title">{{ note.title }}</div>
-                <div class="note-footer">
-                  <span class="note-meta">{{ note.pages ? note.pages + ' pages' : 'PDF' }}</span>
-                  <a class="download-btn" :href="note.url" target="_blank" download>
-                    ⬇ Download
-                  </a>
-                </div>
+          </div>
+          <div class="notes-grid">
+            <div class="note-card" v-for="note in group.notes" :key="note.name">
+              <div class="note-icon">📄</div>
+              <div class="note-title">{{ note.displayName }}</div>
+              <div class="note-footer">
+                <span class="note-meta">PDF</span>
+                <a class="download-btn" :href="note.downloadUrl" target="_blank">⬇ Download</a>
               </div>
             </div>
           </div>
         </div>
       </template>
 
-      <!-- No subject selected -->
+      <!-- Landing -->
       <template v-else-if="!activeSubject">
         <div class="landing">
           <div class="landing-icon">📚</div>
           <h2>Pick a Subject</h2>
-          <p>Select a subject from the sidebar to browse notes by professor.</p>
+          <p>
+            Notes are loaded live from your GitHub repo.<br/>
+            Structure: <code>Notes / Subject / Professor / file.pdf</code>
+          </p>
         </div>
       </template>
 
-      <!-- Subject selected -->
+      <!-- Subject view -->
       <template v-else>
         <div class="breadcrumb">
           <span @click="activeSubject = null">Home</span>
@@ -492,35 +286,46 @@
           <span class="current">{{ activeSubject }}</span>
         </div>
 
-        <div class="subject-header">
-          <h2>{{ activeSubject }}</h2>
-          <div class="meta">
-            {{ currentSubject.professors.length }} professor(s) ·
-            {{ totalNotes(currentSubject) }} note(s)
-          </div>
+        <div v-if="subjectLoading" class="loading">
+          <div class="spinner"></div>
+          <p>Loading {{ activeSubject }}…</p>
         </div>
 
-        <div class="professor-section" v-for="prof in currentSubject.professors" :key="prof.name">
-          <div class="professor-header">
-            <div class="prof-avatar">{{ initials(prof.name) }}</div>
-            <div class="prof-info">
-              <h3>{{ prof.name }}</h3>
-              <span>{{ prof.notes.length }} note(s)</span>
+        <template v-else>
+          <div class="subject-header">
+            <h2>{{ activeSubject }}</h2>
+            <div class="meta">
+              {{ currentSubjectData.length }} professor(s) ·
+              {{ currentSubjectData.reduce((a, p) => a + p.notes.length, 0) }} note(s)
             </div>
           </div>
-          <div class="notes-grid">
-            <div class="note-card" v-for="note in prof.notes" :key="note.title">
-              <div class="note-icon">📄</div>
-              <div class="note-title">{{ note.title }}</div>
-              <div class="note-footer">
-                <span class="note-meta">{{ note.pages ? note.pages + ' pages' : 'PDF' }}</span>
-                <a class="download-btn" :href="note.url" target="_blank" download>
-                  ⬇ Download
-                </a>
+
+          <div v-if="currentSubjectData.length === 0" class="empty">
+            <div class="emoji">📂</div>
+            <h3>No notes yet</h3>
+            <p>Upload PDFs to <code>Notes/{{ activeSubject }}/ProfessorName/note.pdf</code> on GitHub.</p>
+          </div>
+
+          <div class="professor-section" v-for="prof in currentSubjectData" :key="prof.name">
+            <div class="professor-header">
+              <div class="prof-avatar">{{ initials(prof.name) }}</div>
+              <div class="prof-info">
+                <h3>{{ prof.name }}</h3>
+                <span>{{ prof.notes.length }} note(s)</span>
+              </div>
+            </div>
+            <div class="notes-grid">
+              <div class="note-card" v-for="note in prof.notes" :key="note.name">
+                <div class="note-icon">📄</div>
+                <div class="note-title">{{ note.displayName }}</div>
+                <div class="note-footer">
+                  <span class="note-meta">PDF</span>
+                  <a class="download-btn" :href="note.downloadUrl" target="_blank">⬇ Download</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </template>
       </template>
 
     </div>
@@ -529,302 +334,133 @@
 
 <script>
 // ============================================================
-// CONFIGURATION — edit this section to add your notes
+//  ⚙️  CONFIGURATION — edit only this block
 // ============================================================
-const SITE_CONFIG = {
-  semester: "SSC 77",       // shown in header subtitle
-  department: "Career Heights",     // shown in header subtitle
-};
+const GITHUB_USER   = "YOUR_USERNAME";  // e.g. "john123"
+const GITHUB_REPO   = "YOUR_REPO";      // e.g. "class-notes"
+const GITHUB_BRANCH = "main";           // branch name
+const NOTES_ROOT    = "Notes";          // root folder in your repo
 
-const NOTES_DATA = [
-  {
-    name: "Maths",
-    professors: [
-      {
-        name: "Alka Miss",
-        notes: [
-          {
-            title: "Unit 1 – Arrays & Linked Lists",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit1.pdf",
-            pages: 42,
-          },
-          {
-            title: "Unit 2 – Stacks & Queues",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit2.pdf",
-            pages: 35,
-          },
-          {
-            title: "Unit 3 – Trees & Graphs",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit3.pdf",
-            pages: 58,
-          },
-          {
-            title: "Unit 2 – Stacks & Queues",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit2.pdf",
-            pages: 35,
-          },
-          {
-            title: "Unit 3 – Trees & Graphs",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit3.pdf",
-            pages: 58,
-          },
-          
-        ],
-      },
-      {
-        name: "Ajmal Sir",
-        notes: [
-          {
-            title: "Unit 1 – Arrays & Linked Lists",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit1.pdf",
-            pages: 42,
-          },
-          {
-            title: "Unit 2 – Stacks & Queues",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit2.pdf",
-            pages: 35,
-          },
-          {
-            title: "Unit 3 – Trees & Graphs",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit3.pdf",
-            pages: 58,
-          },
-        ],
-      },
-      {
-        name: "Stanley Sir",
-        notes: [
-          {
-            title: "Unit 1 – Arrays & Linked Lists",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit1.pdf",
-            pages: 42,
-          },
-          {
-            title: "Unit 2 – Stacks & Queues",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit2.pdf",
-            pages: 35,
-          },
-          {
-            title: "Unit 3 – Trees & Graphs",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit3.pdf",
-            pages: 58,
-          },
-        ],
-      },
-      {
-        name: "Sivaprasad Sir",
-        notes: [
-          {
-            title: "Unit 1 – Arrays & Linked Lists",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit1.pdf",
-            pages: 42,
-          },
-          {
-            title: "Unit 2 – Stacks & Queues",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit2.pdf",
-            pages: 35,
-          },
-          {
-            title: "Unit 3 – Trees & Graphs",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/DS/unit3.pdf",
-            pages: 58,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "English",
-    professors: [
-      {
-        name: "Tommy sir",
-        notes: [
-          {
-            title: "Module 1 – Process Management",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/OS/mod1.pdf",
-            pages: 30,
-          },
-          {
-            title: "Module 2 – Memory Management",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/OS/mod2.pdf",
-          },
-        ],
-      },
-      {
-        name: "George Sir",
-        notes: [
-          {
-            title: "Module 3 – File Systems",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/OS/mod3_sp.pdf",
-            pages: 25,
-          },
-        ],
-      },
-      {
-        name: "Pius Sir",
-        notes: [
-          {
-            title: "random note",
-            url: "https://raw.githubusercontent.com/sandeepsreekumar4067/Notes-manager/main/Notes/04.03.pdf",
-            pages: 25,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Physics",
-    professors: [
-      {
-        name: "Akhil sir",
-        notes: [
-          {
-            title: "Unit 1 – OSI Model",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/CN/unit1.pdf",
-            pages: 40,
-          },
-          {
-            title: "Unit 2 – TCP/IP",
-            url: "https://github.com/sandeepsreekumar4067/Notes-manager/blob/main/Notes/04.03.pdf",
-            // https://github.com/sandeepsreekumar4067/Notes-manager/blob/main/Notes/04.03.pdf
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Chemistry",
-    professors: [
-      {
-        name: "Axa Miss",
-        notes: [
-          {
-            title: "Unit 1 – OSI Model",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/CN/unit1.pdf",
-            pages: 40,
-          },
-          {
-            title: "Unit 2 – TCP/IP",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/CN/unit2.pdf",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Economics",
-    professors: [
-      {
-        name: "Murikkan sir",
-        notes: [
-          {
-            title: "Unit 1 – OSI Model",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/CN/unit1.pdf",
-            pages: 40,
-          },
-          {
-            title: "Unit 2 – TCP/IP",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/CN/unit2.pdf",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Computer",
-    professors: [
-      {
-        name: "Shyama Miss",
-        notes: [
-          {
-            title: "Unit 1 – OSI Model",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/CN/unit1.pdf",
-            pages: 40,
-          },
-          {
-            title: "Unit 2 – TCP/IP",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/CN/unit2.pdf",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Current Affairs and Gk",
-    professors: [
-      {
-        name: "Pius  sir",
-        notes: [
-          {
-            title: "Unit 1 – OSI Model",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/CN/unit1.pdf",
-            pages: 40,
-          },
-          {
-            title: "Unit 2 – TCP/IP",
-            url: "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/CN/unit2.pdf",
-          },
-        ],
-      },
-    ],
-  },
-];
-// ============================================================
-// END OF CONFIGURATION
+const SEMESTER      = "Semester 4";
+const DEPARTMENT    = "B.Tech CSE";
 // ============================================================
 
-const { createApp, ref, computed } = Vue;
+const API_BASE = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents`;
+
+async function ghFetch(path) {
+  const url = `${API_BASE}/${path}?ref=${GITHUB_BRANCH}`;
+  const res = await fetch(url, { headers: { Accept: "application/vnd.github.v3+json" } });
+  if (!res.ok) throw new Error(`GitHub API ${res.status}: ${res.statusText} (${url})`);
+  return res.json();
+}
+
+function toDisplayName(filename) {
+  return filename.replace(/\.pdf$/i, "").replace(/[-_]/g, " ");
+}
+
+function rawUrl(filePath) {
+  return `https://github.com/${GITHUB_USER}/${GITHUB_REPO}/raw/${GITHUB_BRANCH}/${filePath}`;
+}
+
+const { createApp, ref, computed, onMounted } = Vue;
 
 createApp({
   setup() {
-    const notesData = ref(NOTES_DATA);
-    const activeSubject = ref(null);
-    const search = ref('');
+    const notesData      = ref([]);
+    const activeSubject  = ref(null);
+    const subjectCache   = ref({});
+    const loading        = ref(true);
+    const subjectLoading = ref(false);
+    const error          = ref(null);
+    const search         = ref('');
 
-    const semester = SITE_CONFIG.semester;
-    const department = SITE_CONFIG.department;
+    // On mount: fetch subject folder names only (sidebar)
+    onMounted(async () => {
+      try {
+        const items = await ghFetch(NOTES_ROOT);
+        notesData.value = items
+          .filter(i => i.type === "dir")
+          .map(s => ({ name: s.name, path: s.path }));
+      } catch (e) {
+        error.value = e.message;
+      } finally {
+        loading.value = false;
+      }
+    });
 
-    const currentSubject = computed(() =>
-      notesData.value.find(s => s.name === activeSubject.value)
-    );
+    // Fetch professors + notes for a subject (lazy, cached)
+    async function loadSubject(name) {
+      if (subjectCache.value[name]) return;
+      subjectLoading.value = true;
+      try {
+        const subject = notesData.value.find(s => s.name === name);
+        const profFolders = (await ghFetch(subject.path)).filter(i => i.type === "dir");
 
-    function selectSubject(name) {
-      activeSubject.value = name;
-      search.value = '';
+        const professors = await Promise.all(
+          profFolders.map(async (prof) => {
+            const files = (await ghFetch(prof.path))
+              .filter(f => f.type === "file" && f.name.toLowerCase().endsWith(".pdf"));
+            return {
+              name: prof.name,
+              notes: files.map(f => ({
+                name: f.name,
+                displayName: toDisplayName(f.name),
+                downloadUrl: rawUrl(f.path),
+              })),
+            };
+          })
+        );
+
+        subjectCache.value[name] = professors.filter(p => p.notes.length > 0);
+      } catch (e) {
+        error.value = e.message;
+      } finally {
+        subjectLoading.value = false;
+      }
     }
 
-    function totalNotes(subject) {
-      return subject.professors.reduce((acc, p) => acc + p.notes.length, 0);
+    async function selectSubject(name) {
+      activeSubject.value = name;
+      search.value = '';
+      await loadSubject(name);
+    }
+
+    const currentSubjectData = computed(() =>
+      activeSubject.value ? (subjectCache.value[activeSubject.value] || []) : []
+    );
+
+    function cachedNoteCount(name) {
+      const cached = subjectCache.value[name];
+      if (!cached) return "—";
+      return cached.reduce((a, p) => a + p.notes.length, 0);
     }
 
     function initials(name) {
       return name.split(' ').filter(Boolean).map(w => w[0].toUpperCase()).slice(0, 2).join('');
     }
 
+    // Search only within already-loaded subjects
     const searchResults = computed(() => {
       const q = search.value.trim().toLowerCase();
       if (!q) return [];
       const results = [];
-      for (const subject of notesData.value) {
-        for (const prof of subject.professors) {
+      for (const [subjectName, professors] of Object.entries(subjectCache.value)) {
+        for (const prof of professors) {
           const matched = prof.notes.filter(n =>
-            n.title.toLowerCase().includes(q) ||
+            n.displayName.toLowerCase().includes(q) ||
             prof.name.toLowerCase().includes(q) ||
-            subject.name.toLowerCase().includes(q)
+            subjectName.toLowerCase().includes(q)
           );
-          if (matched.length) {
-            results.push({ subject: subject.name, professor: prof.name, notes: matched });
-          }
+          if (matched.length) results.push({ subject: subjectName, professor: prof.name, notes: matched });
         }
       }
       return results;
     });
 
     return {
-      notesData, activeSubject, search,
-      semester, department,
-      currentSubject, selectSubject,
-      totalNotes, initials, searchResults,
+      SEMESTER, DEPARTMENT, NOTES_ROOT, GITHUB_BRANCH,
+      notesData, activeSubject, loading, subjectLoading, error, search,
+      currentSubjectData, selectSubject, cachedNoteCount, initials, searchResults,
     };
   }
 }).mount('#app');
